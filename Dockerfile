@@ -9,9 +9,9 @@ COPY Gemfile /tmp/Gemfile
 
 # below RUN includes plugin as examples elasticsearch is not required
 # you may customize including plugins as you wish
-RUN buildDeps="sudo make gcc g++ libc-dev build-essential libgeoip-dev libmaxminddb-dev" \
+RUN buildDeps="sudo make gcc g++ libc-dev build-essential " \
   && apt-get update \
-  && apt-get install -y --no-install-recommends $buildDeps \
+  && apt-get install -y --no-install-recommends $buildDeps libgeoip-dev libmaxminddb-dev\
   && sudo gem install --file /tmp/Gemfile \
   && sudo gem sources --clear-all \
   && SUDO_FORCE_REMOVE=yes \
