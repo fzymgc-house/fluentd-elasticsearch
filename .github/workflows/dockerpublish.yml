@@ -68,11 +68,7 @@ jobs:
 
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-
+          set -v
+          docker tag ${IMAGE_NAME} ${IMAGE_ID}:$(git rev-parse --short "$GITHUB_SHA")
           docker tag ${IMAGE_NAME} $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
-
-          if [ "${VERSION}" == "master" ]; then
-            docker tag ${IMAGE_NAME} ${IMAGE_ID}:$(git rev-parse --short "$GITHUB_SHA")
-            docker push ${IMAGE_ID}:$(git rev-parse --short "$GITHUB_SHA")
-          fi
+          docker push $IMAGE_ID
