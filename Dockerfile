@@ -9,7 +9,7 @@ COPY Gemfile /tmp/Gemfile
 
 # below RUN includes plugin as examples elasticsearch is not required
 # you may customize including plugins as you wish
-RUN buildDeps="sudo make gcc g++ libc-dev" \
+RUN buildDeps="sudo make gcc g++ libc-dev build-essential libgeoip-dev" \
   && apt-get update \
   && apt-get install -y --no-install-recommends $buildDeps \
   && sudo gem install --file /tmp/Gemfile \
